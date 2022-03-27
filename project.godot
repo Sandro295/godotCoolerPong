@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="CoolerPong"
+run/main_scene="res://src/Nodes/KinematicBody2D.tscn"
 config/icon="res://icon.png"
 
 [physics]

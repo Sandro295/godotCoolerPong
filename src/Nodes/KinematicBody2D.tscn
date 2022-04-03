@@ -1,19 +1,124 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://src/Nodes/KinematicBody2D.gd" type="Script" id=1]
+[ext_resource path="res://src/TheBall.gd" type="Script" id=1]
+[ext_resource path="res://assets/whiteTile.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 10 )
+[sub_resource type="Gradient" id=1]
 
-[sub_resource type="NoiseTexture" id=2]
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 10
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
-script = ExtResource( 1 )
+[sub_resource type="CircleShape2D" id=3]
+radius = 21.587
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+[sub_resource type="CircleShape2D" id=4]
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -2.38419e-07, 2.38419e-07 )
-scale = Vector2( 0.125, 0.0390625 )
+[sub_resource type="GradientTexture" id=5]
+width = 10
+
+[sub_resource type="NavigationPolygon" id=6]
+vertices = PoolVector2Array( 128, 128, 32, 128, 32, 32, 128, 32 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="OccluderPolygon2D" id=7]
+polygon = PoolVector2Array( 128, 128, 32, 128, 32, 32, 128, 32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( 128, 128, 32, 128, 32, 32, 128, 32 )
+
+[sub_resource type="TileSet" id=9]
+0/name = "whiteTile.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 64 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 0
+0/autotile/bitmask_flags = [  ]
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 32, 32 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "whiteTile.png 1"
+1/texture = ExtResource( 2 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 64, 64 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/occluder = SubResource( 7 )
+1/navigation_offset = Vector2( 0, 0 )
+1/navigation = SubResource( 6 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 8 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BallShooter" type="Area2D" parent="."]
+position = Vector2( 192, 448 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="BallShooter"]
+scale = Vector2( 4.47494, 45.5385 )
 texture = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BallShooter"]
+rotation = 3.14159
+shape = SubResource( 3 )
+one_way_collision_margin = 128.0
+
+[node name="TheBall" type="KinematicBody2D" parent="."]
+position = Vector2( -64, 448 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TheBall"]
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="TheBall"]
+position = Vector2( -1.19209e-07, 0 )
+scale = Vector2( 1.6, 16 )
+texture = SubResource( 5 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Walls" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( 0, -128 )
+scale = Vector2( 1, 1.86981 )
+build_mode = 1
+polygon = PoolVector2Array( 0, 0, 0, 322.409, 40, 322.409, 40, 30.6237, 336, 30.6237, 344, 322.409, 384, 322.409, 384, 0 )
+
+[node name="Pit" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( 0, 472, 384, 472, 384, 512, 0, 512 )
+
+[node name="TileMap" type="TileMap" parent="Area2D"]
+tile_set = SubResource( 9 )
+format = 1
+tile_data = PoolIntArray( -131072, 1, 0, -131071, 1, 0, -131070, 1, 0, -131069, 1, 0, -131068, 1, 0, -131067, 1, 0, -65536, 1, 0, -65531, 1, 0, 0, 1, 0, 5, 1, 0, 65536, 1, 0, 65541, 1, 0, 131072, 1, 0, 131077, 1, 0, 196608, 1, 0, 196613, 1, 0, 262144, 1, 0, 262149, 1, 0, 327680, 1, 0, 327685, 1, 0, 393216, 1, 0, 393221, 1, 0 )

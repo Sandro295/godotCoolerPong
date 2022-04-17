@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/redTile.png-c4ebf07bf72602dea972ba13942386e9.stex"
+path="res://.import/block_1.png-8d5fa6de864006f27d9ede8f8eb58eee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/redTile.png"
-dest_files=[ "res://.import/redTile.png-c4ebf07bf72602dea972ba13942386e9.stex" ]
+source_file="res://assets/block_1.png"
+dest_files=[ "res://.import/block_1.png-8d5fa6de864006f27d9ede8f8eb58eee.stex" ]
 
 [params]
 

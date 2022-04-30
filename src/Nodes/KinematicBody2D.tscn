@@ -136,6 +136,7 @@ gradient = SubResource( 1 )
 width = 10
 
 [sub_resource type="CapsuleShape2D" id=10]
+height = 0.0
 
 [sub_resource type="ConvexPolygonShape2D" id=19]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -274,7 +275,7 @@ format = 1
 tile_data = PoolIntArray( 3080198, 0, 0, 3080199, 0, 0, 3080200, 0, 0, 3080201, 0, 0, 3080202, 0, 0, 3080203, 0, 0, 3080204, 0, 0, 3080205, 0, 0, 3080206, 0, 0, 3080207, 0, 0, 3080208, 0, 0, 3080209, 0, 0, 3080210, 0, 0, 3080211, 0, 0, 3080212, 0, 0, 3080213, 0, 0, 3080214, 0, 0, 3080215, 0, 0, 3080216, 0, 0, 3080217, 0, 0, 3080218, 0, 0, 3080219, 0, 0, 3080220, 0, 0 )
 
 [node name="BallShooter" type="Area2D" parent="."]
-position = Vector2( 192, 512 )
+position = Vector2( 200, 512 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -330,7 +331,7 @@ rotation = 1.5708
 shape = SubResource( 29 )
 
 [node name="TheBall" type="KinematicBody2D" parent="."]
-position = Vector2( 128, 392 )
+position = Vector2( 200, 480 )
 collision/safe_margin = 1.0
 script = ExtResource( 1 )
 __meta__ = {
